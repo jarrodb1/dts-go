@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DTS Go kit</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#3fb950;--blue:#58a6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,Segoe UI,Roboto,Arial,sans-serif}
+main{max-width:860px;margin:0 auto;padding:40px 20px 60px}h1{font-size:30px;margin:0 0 4px}h2{font-size:19px;margin:34px 0 10px;color:var(--blue)}
+.sub{color:var(--muted);margin:0 0 26px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.btn{display:inline-block;background:var(--accent);color:#04120a;font-weight:700;text-decoration:none;padding:11px 20px;border-radius:8px}
+code,pre{font-family:Consolas,Menlo,monospace;font-size:14px}pre{background:#010409;border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:8px 0}
+.hash{color:var(--muted);font-size:13px;word-break:break-all}table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}th{color:var(--muted);font-weight:600}
+ul{padding-left:20px}footer{color:var(--muted);font-size:13px;margin-top:40px}
+</style></head><body><main>
+<h1>DTS Go kit</h1>
+<p class="sub">Tools Diligent Technology Solutions uses on Windows machines it supports. Use it only when DTS asks you to.</p>
+
+<div class="panel">
+<p><strong>Quickest:</strong> open PowerShell and paste:</p>
+<pre>irm https://go.diligenttech.net/get.ps1 | iex</pre>
+<p>It downloads the kit, checks it, and opens the menu (Windows asks for administrator rights).</p>
+</div>
+
+<div class="panel">
+<p><a class="btn" href="DTS-GoKit.zip">Download DTS-GoKit.zip</a> &nbsp; <span class="hash">22 KB &middot; built 2026-11-17</span></p>
+<p class="hash">SHA-256 db7969799437b54efa77fb099d6c26793e6841292ec4632b5bea0469124e069e</p>
+<p>Unzip it, then double-click <code>Go.cmd</code> in the <code>DTS-GoKit</code> folder.</p>
+</div>
+
+<h2>The menu</h2>
+<table>
+<tr><th>Choice</th><th>What it does</th><th>Changes the machine?</th></tr>
+<tr><td>1. Install Splashtop</td><td>DTS remote support (DTS gives you the link)</td><td>Installs Splashtop</td></tr>
+<tr><td>2. Hardware assessment</td><td>Reads hardware, health and security settings; writes a report and zip</td><td>No - read-only</td></tr>
+<tr><td>3. Give Bench access</td><td>Temporary support access for DTS's automation</td><td>Yes, until it ends</td></tr>
+<tr><td>4. Extend Bench access</td><td>Moves the end time</td><td>Only the end time</td></tr>
+<tr><td>5. End Bench access now</td><td>Removes everything choice 3 added</td><td>Undoes choice 3</td></tr>
+</table>
+
+<h2>Bench access - what it adds and how it goes away</h2>
+<ul>
+<li>A local administrator account <code>dts-bench</code> with a random password nobody sees; sign-in by key only.</li>
+<li>OpenSSH Server, reachable only through DTS's private Tailscale network. This machine cannot reach anything on DTS's network, and its DNS and routes are not changed.</li>
+<li>Tailscale, joined with a one-time key.</li>
+<li>A record of every PowerShell command run during the session, kept in <code>C:\ProgramData\DTS\BenchAccess</code>.</li>
+</ul>
+<p>At the end time (default 4 hours) a scheduled task removes all of it and writes the result to the Windows Application event log (source <code>DTSBenchAccess</code>). If the machine is off then, the cleanup runs when it next starts.</p>
+
+<h2>Check the files</h2>
+<p><a href="SHA256SUMS.txt">SHA256SUMS.txt</a> &middot; <a href="get.ps1">get.ps1</a> &middot; source: <a href="https://github.com/jarrodb1/dts-go">github.com/jarrodb1/dts-go</a></p>
+<footer>Diligent Technology Solutions, LLC &middot; built 2026-11-17</footer>
+</main></body></html>
