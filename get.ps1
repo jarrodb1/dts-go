@@ -4,7 +4,7 @@
 # Built 2026-11-17. Windows PowerShell 5.1 or later. Holds no secrets.
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-$want = '8832e36d81a25cfc2042dbd5c0b7f9346aba7e4be77d2ba0f59ffd9ec1294128'
+$want = '64faf653ac6f707bed2e91f8bd5a07cad126a58155b37f951fc0a4b3848cc492'
 $dir = Join-Path $env:ProgramData 'DTS\GoKit'
 New-Item -ItemType Directory -Path $dir -Force | Out-Null
 $zip = Join-Path $dir 'DTS-GoKit.zip'
