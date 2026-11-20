@@ -1,10 +1,10 @@
 # DTS Go kit - one-line installer. Run in PowerShell:  irm https://go.diligenttech.net/get.ps1 | iex
 # Downloads DTS-GoKit.zip from https://go.diligenttech.net, checks its SHA-256, unpacks it to
 # C:\ProgramData\DTS\GoKit\DTS-GoKit and opens the Go menu (Go.cmd asks for administrator rights).
-# Built 2026-11-17. Windows PowerShell 5.1 or later. Holds no secrets.
+# Built 2026-11-20. Windows PowerShell 5.1 or later. Holds no secrets.
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-$want = 'd801ec475512194070a177cfaab31f3d5918b7757e2763ada966ca31cffcf9e0'
+$want = '7eeb9d909efcd39c40f15dc26c2c519f59f9f9a131641ed91b0987eca4aca444'
 $dir = Join-Path $env:ProgramData 'DTS\GoKit'
 New-Item -ItemType Directory -Path $dir -Force | Out-Null
 $zip = Join-Path $dir 'DTS-GoKit.zip'
